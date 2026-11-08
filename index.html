@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monde Motale | ICT & Software Engineering Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            accent: '#06b6d4',
+                            emerald: '#10b981'
+                        },
+                        dark: {
+                            bg: '#090d16',
+                            card: 'rgba(15, 23, 42, 0.75)',
+                            border: 'rgba(255, 255, 255, 0.08)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #090d16;
+            color: #f8fafc;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-panel-hover:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Gradient Glow Effects */
+        .glow-bg {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <!-- Ambient Glowing Background Bubbles -->
+    <div class="glow-bg w-[500px] h-[500px] bg-brand-600/20 top-[-100px] left-[-100px]"></div>
+    <div class="glow-bg w-[400px] h-[400px] bg-brand-accent/15 top-[40%] right-[-100px]"></div>
+    <div class="glow-bg w-[600px] h-[600px] bg-indigo-900/20 bottom-[-100px] left-[20%]"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 w-full glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo / Name -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-brand-500/20 group-hover:scale-105 transition-transform">
+                        MM
+                    </div>
+                    <span class="font-bold text-lg tracking-tight group-hover:text-brand-400 transition-colors">
+                        Monde Motale<span class="text-brand-accent">.</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                    <a href="#about" class="hover:text-white transition-colors">About</a>
+                    <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+                    <a href="#skills" class="hover:text-white transition-colors">Skills</a>
+                    <a href="#credentials" class="hover:text-white transition-colors">Credentials</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="https://github.com/MondeMotale" target="_blank" class="text-slate-400 hover:text-white text-xl transition-colors">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#contact" class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm transition-all shadow-lg shadow-brand-600/30 hover:shadow-brand-500/50">
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 text-2xl p-2 focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-b border-white/10 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-slate-300 hover:text-white">About</a>
+            <a href="#projects" class="block text-slate-300 hover:text-white">Projects</a>
+            <a href="#skills" class="block text-slate-300 hover:text-white">Skills</a>
+            <a href="#credentials" class="block text-slate-300 hover:text-white">Credentials</a>
+            <a href="#contact" class="block text-slate-300 hover:text-white">Contact</a>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                <a href="https://github.com/MondeMotale" target="_blank" class="text-slate-300 flex items-center gap-2">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 py-12">
+
+        <!-- HERO SECTION -->
+        <section id="about" class="pt-8 sm:pt-16 pb-8 grid lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-8">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-brand-500/30 text-xs font-semibold text-brand-400">
+                    <span class="w-2 h-2 rounded-full bg-brand-emerald animate-pulse"></span>
+                    Final-Year ICT Student &bull; Open for Opportunities
+                </div>
+
+                <!-- Main Headline -->
+                <div class="space-y-4">
+                    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Hi, I'm <span class="gradient-text">Monde Motale</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl font-medium text-slate-300">
+                        Software & Systems Developer
+                    </p>
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Specializing in building multi-platform enterprise ecosystems, real-time IoT monitoring systems, secure multi-tenant architectures, and data-driven solutions that bridge operational gaps.
+                    </p>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-4 pt-2">
+                    <a href="#projects" class="px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm transition-all shadow-xl shadow-brand-600/30 flex items-center gap-2">
+                        <span>View Featured Work</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact" class="px-6 py-3.5 rounded-xl glass-panel hover:bg-white/10 text-white font-semibold text-sm transition-all flex items-center gap-2">
+                        <span>Get In Touch</span>
+                    </a>
+                    <a href="#credentials" class="px-6 py-3.5 rounded-xl glass-panel text-slate-300 hover:text-white font-semibold text-sm transition-all border-dashed border-white/20 hover:border-brand-400 flex items-center gap-2">
+                        <i class="fas fa-certificate text-brand-400"></i>
+                        <span>Credentials</span>
+                    </a>
+                </div>
+
+                <!-- Quick Highlights Row -->
+                <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-white">Full-Stack</p>
+                        <p class="text-xs text-slate-400 mt-1">Mobile & Web Native</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-400">Multi-Tenant</p>
+                        <p class="text-xs text-slate-400 mt-1">RBAC & Security First</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-brand-accent">Real-Time</p>
+                        <p class="text-xs text-slate-400 mt-1">RTC Telehealth & IoT</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Profile / Visual Card -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-600 via-brand-accent to-brand-500 opacity-30 blur-xl"></div>
+                    <div class="relative glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
+                        <!-- Terminal Top Header -->
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                            </div>
+                            <span class="font-mono text-xs text-slate-500">developer-profile.ts</span>
+                        </div>
+
+                        <!-- Code Display -->
+                        <div class="font-mono text-xs sm:text-sm space-y-2 text-slate-300 leading-relaxed">
+                            <p><span class="text-brand-400">const</span> developer = {</p>
+                            <p class="pl-4"><span class="text-slate-400">name:</span> <span class="text-brand-accent">'Monde Motale'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">qualification:</span> <span class="text-brand-accent">'Diploma in ICT / Software Eng'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">coreFocus:</span> [<span class="text-emerald-400">'Flutter'</span>, <span class="text-emerald-400">'Next.js'</span>, <span class="text-emerald-400">'Firebase'</span>],</p>
+                            <p class="pl-4"><span class="text-slate-400">securityConstraint:</span> <span class="text-amber-300">'RBAC & Data Isolation'</span>,</p>
+                            <p class="pl-4"><span class="text-slate-400">status:</span> <span class="text-emerald-400">'Ready for Employment'</span></p>
+                            <p>};</p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-white/5 space-y-2">
+                            <div class="flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span>Recent System Architecture</span>
+                                <span class="text-brand-emerald">100% Deployed</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-brand-600 to-brand-accent h-full w-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS SECTION -->
+        <section id="projects" class="space-y-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Featured <span class="gradient-text">Projects</span>
+                    </h2>
+                    <p class="text-slate-400 mt-2 text-base">
+                        Production-grade applications and systems built with problem-solution impact.
+                    </p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-xl glass-panel self-start md:self-auto">
+                    <button onclick="filterProjects('all')" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-600 text-white" data-filter="all">
+                        All Works
+                    </button>
+                    <button onclick="filterProjects('fullstack')" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all" data-filter="fullstack">
+                        Full-Stack / Mobile
+                    </button>
+                    <button onclick="filterProjects('iot')" class="project-filter-btn px-4 py-2 rounded-lg text-xs font-semibold text-slate-400 hover:text-white transition-all" data-filter="iot">
+                        IoT & Industrial
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid lg:grid-cols-2 gap-8">
+
+                <!-- PROJECT CARD 1: Health-Bridge -->
+                <div class="project-card glass-panel glass-panel-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6" data-category="fullstack">
+                    <div class="space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/20 text-brand-400 border border-brand-500/30">
+                                Healthcare & Telehealth
+                            </span>
+                            <div class="flex items-center gap-3">
+                                <a href="https://github.com/MondeMotale/Health-Bridge" target="_blank" class="text-slate-400 hover:text-white text-xl transition-colors" title="GitHub Repository">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-white group-hover:text-brand-400 transition-colors">
+                                Health-Bridge
+                            </h3>
+                            <p class="text-sm font-medium text-slate-400 mt-1">
+                                Unified Community Healthcare & Clinic Ecosystem
+                            </p>
+                        </div>
+
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            A multi-platform digital platform bridging the gap between Community Health Workers (CHWs) and clinic administrators. Solves operational fragmentation through real-time telemetry, remote patient care, and secure telehealth signaling.
+                        </p>
+
+                        <!-- Key Architecture Features -->
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Engineering Highlights:</p>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Multi-Tenant Data Isolation:</strong> Firestore rules enforcing strict clinic boundaries.</li>
+                                <li><strong class="text-white">Agora RTC Telehealth:</strong> Node.js signaling service for dynamic, encrypted audio/video tokens.</li>
+                                <li><strong class="text-white">Role-Based Access Control:</strong> Strict route guards across Next.js web portal and Flutter mobile app.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 pt-4 border-t border-white/10">
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Flutter</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">React / Next.js</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">TypeScript</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Firebase</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Agora RTC</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Node.js</span>
+                        </div>
+
+                        <a href="https://github.com/MondeMotale/Health-Bridge" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-brand-400 hover:text-brand-accent transition-colors">
+                            <span>Explore Full Repository & Architecture</span>
+                            <i class="fas fa-external-link-alt text-xxs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PROJECT CARD 2: Industrial IoT Monitoring System -->
+                <div class="project-card glass-panel glass-panel-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between space-y-6" data-category="iot">
+                    <div class="space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-accent/20 text-brand-accent border border-brand-accent/30">
+                                Industrial IoT & Operations
+                            </span>
+                            <div class="flex items-center gap-3">
+                                <a href="https://github.com/MondeMotale" target="_blank" class="text-slate-400 hover:text-white text-xl transition-colors" title="GitHub Profile">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">
+                                Industrial IoT Facility Monitor
+                            </h3>
+                            <p class="text-sm font-medium text-slate-400 mt-1">
+                                Real-Time Ash Dam, Water Level & Pump Alarm System
+                            </p>
+                        </div>
+
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Critical operations telemetry suite engineered for monitoring ash dam stability, decant penstock water levels, and pump alarm triggers in real time to prevent environmental spillages and hardware downtime.
+                        </p>
+
+                        <!-- Key Architecture Features -->
+                        <div class="space-y-2">
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400 font-mono">Engineering Highlights:</p>
+                            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+                                <li><strong class="text-white">Real-Time Threshold Alarming:</strong> Dynamic alert dispatches for critical water level surges.</li>
+                                <li><strong class="text-white">Telemetry Analytics:</strong> Live dashboard charting penstock flow rates and pump status.</li>
+                                <li><strong class="text-white">Data Integrity Safeguards:</strong> Anomaly detection filtering noise out of raw sensor feeds.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 pt-4 border-t border-white/10">
+                        <!-- Tech Stack Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Python / Node.js</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">MQTT / REST</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">Time-Series DB</span>
+                            <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 text-xs font-mono">React Dashboard</span>
+                        </div>
+
+                        <a href="https://github.com/MondeMotale" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-brand-400 hover:text-brand-accent transition-colors">
+                            <span>View Source Code & Documentation</span>
+                            <i class="fas fa-external-link-alt text-xxs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SKILLS & TECHNOLOGIES SECTION -->
+        <section id="skills" class="space-y-12">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Skills & <span class="gradient-text">Technologies</span>
+                </h2>
+                <p class="text-slate-400 mt-2 text-base">
+                    Technical stack categorized by domain proficiency.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Skill Column 1 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 border-t-2 border-t-brand-500">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400 text-lg">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">Frontend & Mobile</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Flutter (Dart)</span>
+                            <span class="text-xs text-brand-400 font-mono">Mobile</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>React / Next.js</span>
+                            <span class="text-xs text-brand-400 font-mono">Web</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>TypeScript / JS</span>
+                            <span class="text-xs text-brand-400 font-mono">Core</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Tailwind CSS</span>
+                            <span class="text-xs text-brand-400 font-mono">Styling</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Column 2 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 border-t-2 border-t-brand-accent">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brand-accent/20 flex items-center justify-center text-brand-accent text-lg">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">Backend & Cloud</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Node.js / Express</span>
+                            <span class="text-xs text-brand-accent font-mono">Runtime</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Firebase (Auth/Firestore)</span>
+                            <span class="text-xs text-brand-accent font-mono">BaaS</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>REST APIs & WebSockets</span>
+                            <span class="text-xs text-brand-accent font-mono">Protocols</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Agora RTC Engine</span>
+                            <span class="text-xs text-brand-accent font-mono">Realtime Media</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Column 3 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 border-t-2 border-t-brand-emerald">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">Data & Security</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>SQL Databases</span>
+                            <span class="text-xs text-emerald-400 font-mono">Relational</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Multi-Tenant RBAC</span>
+                            <span class="text-xs text-emerald-400 font-mono">Security</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Data Analytics</span>
+                            <span class="text-xs text-emerald-400 font-mono">EDA</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Security Rules</span>
+                            <span class="text-xs text-emerald-400 font-mono">Isolation</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Column 4 -->
+                <div class="glass-panel p-6 rounded-2xl space-y-4 border-t-2 border-t-purple-500">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-lg">
+                            <i class="fas fa-toolbox"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-lg">Tools & Workflows</h3>
+                    </div>
+                    <ul class="space-y-2 text-sm text-slate-300 font-medium">
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Git / GitHub</span>
+                            <span class="text-xs text-purple-400 font-mono">VCS</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Jupyter Notebooks</span>
+                            <span class="text-xs text-purple-400 font-mono">Python</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Vercel / Netlify</span>
+                            <span class="text-xs text-purple-400 font-mono">Deployment</span>
+                        </li>
+                        <li class="flex items-center justify-between p-2 rounded bg-slate-900/50">
+                            <span>Postman</span>
+                            <span class="text-xs text-purple-400 font-mono">Testing</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- VERIFIED CREDENTIALS & BADGES -->
+        <section id="credentials" class="space-y-12">
+            <div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                    Verified <span class="gradient-text">Credentials & Badges</span>
+                </h2>
+                <p class="text-slate-400 mt-2 text-base">
+                    Officially issued certifications, Credly badges, and academic micro-credentials.
+                </p>
+            </div>
+
+            <!-- Huawei ICT Academy Sub-Section -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-8 bg-red-600 rounded-full"></div>
+                    <h3 class="text-xl font-bold text-white tracking-tight">Huawei ICT Academy Certifications</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Huawei Card 1: Overview of AI -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/30">
+                                    Artificial Intelligence
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">2026-03-27</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Overview of AI</h4>
+                                <p class="text-xs text-slate-400 mt-1">Huawei ICT Academy</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center justify-between">
+                                <span class="text-xs font-mono text-slate-300">ICT20260327082472</span>
+                                <button onclick="copyCode('ICT20260327082472', this)" class="text-xs text-slate-400 hover:text-white transition px-2 py-1 rounded bg-slate-800 border border-white/10">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <a href="https://e.huawei.com/en/talent/cert/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-400 hover:text-slate-200 transition">
+                                Verify on Portal ↗
+                            </a>
+                            <button onclick="openCertModal('Overview of AI', 'ICT20260327082472', '2026-03-27', 'Images/1.png')" class="text-xs font-semibold text-red-400 hover:text-red-300 transition flex items-center gap-1">
+                                View Details <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Huawei Card 2: Cloud Basics CRA -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/30">
+                                    Cloud Computing
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">2025-11-24</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Cloud Basics: Development & Concepts</h4>
+                                <p class="text-xs text-slate-400 mt-1">CRA Training Program &bull; Huawei ICT Academy</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center justify-between">
+                                <span class="text-xs font-mono text-slate-300">ICTCRA20251124000339</span>
+                                <button onclick="copyCode('ICTCRA20251124000339', this)" class="text-xs text-slate-400 hover:text-white transition px-2 py-1 rounded bg-slate-800 border border-white/10">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <a href="https://e.huawei.com/en/talent/cert/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-400 hover:text-slate-200 transition">
+                                Verify on Portal ↗
+                            </a>
+                            <button onclick="openCertModal('Cloud Basics: Development and Basic Concepts (CRA Training Program)', 'ICTCRA20251124000339', '2025-11-24', 'Images/2.png')" class="text-xs font-semibold text-red-400 hover:text-red-300 transition flex items-center gap-1">
+                                View Details <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Huawei Card 3: Cloud Development & Concepts -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-red-500/20 text-red-400 border border-red-500/30">
+                                    Cloud Computing
+                                </span>
+                                <span class="text-xs text-slate-400 font-mono">2025-11-24</span>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white">Development & Concepts of Cloud</h4>
+                                <p class="text-xs text-slate-400 mt-1">Huawei ICT Academy</p>
+                            </div>
+                            <div class="p-3 rounded-xl bg-slate-900/80 border border-white/5 flex items-center justify-between">
+                                <span class="text-xs font-mono text-slate-300">ICT20251124000339</span>
+                                <button onclick="copyCode('ICT20251124000339', this)" class="text-xs text-slate-400 hover:text-white transition px-2 py-1 rounded bg-slate-800 border border-white/10">
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-white/10">
+                            <a href="https://e.huawei.com/en/talent/cert/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-400 hover:text-slate-200 transition">
+                                Verify on Portal ↗
+                            </a>
+                            <button onclick="openCertModal('Development and Basic Concepts of Cloud Computing', 'ICT20251124000339', '2025-11-24', 'Images/3.png')" class="text-xs font-semibold text-red-400 hover:text-red-300 transition flex items-center gap-1">
+                                View Details <span>→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW: Credly Verified Badges Sub-Section -->
+            <div class="space-y-6 pt-8 border-t border-white/5">
+                <div class="flex items-center gap-3">
+                    <div class="w-3 h-8 bg-[#ff6b00] rounded-full"></div> <!-- Credly Orange -->
+                    <h3 class="text-xl font-bold text-white tracking-tight">Credly Verified Badges</h3>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Credly Badge 1: AI Literacy -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <img src="Images/ai-literacy.png" alt="AI Literacy Badge" class="w-40 h-40 object-contain drop-shadow-xl transition-transform duration-300 hover:scale-105" />
+                            <div>
+                                <h4 class="text-lg font-bold text-white leading-tight">AI Literacy</h4>
+                                <p class="text-xs text-slate-400 mt-1">Issued by IBM SkillsBuild</p>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-mono">Nov 03, 2026</span>
+                            <!-- PASTE YOUR CREDLY URL FOR AI LITERACY IN THE HREF BELOW -->
+                            <a href="https://www.credly.com/badges/8f7fc812-ab8b-4e30-a430-056e74bef1c7/public_url" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-400 hover:text-brand-accent transition-colors flex items-center gap-1">
+                                <span>Verify Badge</span>
+                                <i class="fas fa-external-link-alt text-xxs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Credly Badge 2: Data Analytics Essentials -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <img src="Images/data-analytics-essentials.png" alt="Cisco Data Analytics Essentials Badge" class="w-40 h-40 object-contain drop-shadow-xl transition-transform duration-300 hover:scale-105" />
+                            <div>
+                                <h4 class="text-lg font-bold text-white leading-tight">Data Analytics Essentials</h4>
+                                <p class="text-xs text-slate-400 mt-1">Issued by Cisco Networking Academy</p>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-mono">Nov 03, 2026</span>
+                            <!-- PASTE YOUR CREDLY URL FOR DATA ANALYTICS IN THE HREF BELOW -->
+                            <a href="https://www.credly.com/badges/5258940b-b8bc-4970-b5e7-15468f5e5bf5/public_url" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-400 hover:text-brand-accent transition-colors flex items-center gap-1">
+                                <span>Verify Badge</span>
+                                <i class="fas fa-external-link-alt text-xxs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Credly Badge 3: Team Essentials for AI -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                        <div class="flex flex-col items-center text-center space-y-4">
+                            <img src="Images/team-essentials-for-designing-ai-solutions.png" alt="Team Essentials for Designing AI Solutions Badge" class="w-40 h-40 object-contain drop-shadow-xl transition-transform duration-300 hover:scale-105" />
+                            <div>
+                                <h4 class="text-lg font-bold text-white leading-tight">Team Essentials for Designing AI Solutions</h4>
+                                <p class="text-xs text-slate-400 mt-1">Issued by IBM SkillsBuild</p>
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-mono">Nov 03, 2026</span>
+                            <!-- PASTE YOUR CREDLY URL FOR TEAM ESSENTIALS IN THE HREF BELOW -->
+                            <a href="https://www.credly.com/badges/61c189a2-948d-4369-9297-0a2ce414118c/public_url" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-brand-400 hover:text-brand-accent transition-colors flex items-center gap-1">
+                                <span>Verify Badge</span>
+                                <i class="fas fa-external-link-alt text-xxs"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+                <!-- CONTACT SECTION -->
+        <section id="contact" class="glass-panel rounded-3xl p-8 sm:p-12 text-center space-y-8 relative overflow-hidden">
+            <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Let's Build Something <span class="gradient-text">Great</span></h2>
+                <p class="text-slate-400 text-sm sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                    I am actively seeking graduate software developer roles, full-stack engineer opportunities, or ICT systems analyst positions. Feel free to reach out directly via email or connect with me on LinkedIn.
+                </p>
+                
+                <!-- Contact Buttons Row -->
+                <div class="pt-6 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4">
+                    
+                    <!-- Email Button -->
+                    <!-- Replace "YOUR_EMAIL@gmail.com" with your actual email -->
+                    <a href="mailto:Mondemotale8@gmail.com" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-sm transition-all shadow-lg shadow-brand-600/30 hover:shadow-brand-500/50 flex items-center justify-center gap-3 group">
+                        <i class="fas fa-envelope text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Send an Email</span>
+                    </a>
+
+                    <!-- LinkedIn Button -->
+                    <!-- Replace "YOUR_LINKEDIN_URL" with your full LinkedIn profile link (e.g., https://linkedin.com/in/mondemotale) -->
+                    <a href="https://www.linkedin.com/in/MondeMotale" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#0a66c2] hover:bg-[#004182] text-white font-semibold text-sm transition-all shadow-lg shadow-[#0a66c2]/30 hover:shadow-[#0a66c2]/50 flex items-center justify-center gap-3 group">
+                        <i class="fab fa-linkedin text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>Connect on LinkedIn</span>
+                    </a>
+
+                    <!-- GitHub Button -->
+                    <a href="https://github.com/MondeMotale" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel hover:bg-white/10 text-white font-semibold text-sm transition-all flex items-center justify-center gap-3 group border border-white/10">
+                        <i class="fab fa-github text-lg group-hover:scale-110 transition-transform"></i>
+                        <span>GitHub Profile</span>
+                    </a>
+                </div>
+
+                <!-- Quick Info Footer inside the section -->
+                <div class="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-400 font-medium">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-map-marker-alt text-brand-accent"></i>
+                        <span>South Africa (Open to Remote/Hybrid)</span>
+                    </div>
+                    <span class="hidden sm:block text-slate-600">|</span>
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-circle text-brand-emerald text-[8px] animate-pulse"></i>
+                        <span>Available for immediate start</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-8 text-center text-xs text-slate-500 relative z-10">
+        <p>&copy; 2026 Monde Motale. Built with HTML, Tailwind CSS & JavaScript.</p>
+    </footer>
+
+    <!-- MODAL COMPONENT (POPUP) -->
+    <div id="certModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-panel rounded-2xl max-w-2xl w-full p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto border border-white/10">
+            
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h3 id="modalTitle" class="text-xl font-bold text-white">Certificate View</h3>
+                    <p class="text-xs text-slate-400 mt-1">Issued to: <span class="text-slate-200 font-semibold">Monde Motale</span></p>
+                </div>
+                <button onclick="closeCertModal()" class="text-slate-400 hover:text-white text-2xl font-bold px-2">
+                    &times;
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 bg-slate-900/90 border border-white/10 p-3 rounded-xl mb-4 text-xs">
+                <div>
+                    <span class="text-slate-400 block">Certificate Code:</span>
+                    <span id="modalCode" class="font-mono text-red-400 font-semibold"></span>
+                </div>
+                <div>
+                    <span class="text-slate-400 block">Issue Date:</span>
+                    <span id="modalDate" class="font-mono text-slate-200"></span>
+                </div>
+            </div>
+
+            <div class="bg-slate-950 rounded-xl overflow-hidden border border-white/10 mb-5 flex justify-center items-center min-h-[300px]">
+                <img id="modalImg" src="" alt="Huawei Certificate Preview" class="w-full h-auto object-contain max-h-[55vh] rounded-lg" />
+            </div>
+
+            <div class="flex justify-between items-center pt-2">
+                <a id="modalVerifyBtn" href="https://e.huawei.com/en/talent/cert/" target="_blank" rel="noopener noreferrer" class="text-xs text-slate-300 hover:text-white underline">
+                    Open Huawei Verification Portal ↗
+                </a>
+                <button onclick="closeCertModal()" class="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-semibold text-xs rounded-xl transition">
+                    Close Preview
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Drawer Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Project Filter Function
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.project-filter-btn');
+
+            buttons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('bg-brand-600', 'text-white');
+                    btn.classList.remove('text-slate-400');
+                } else {
+                    btn.classList.remove('bg-brand-600', 'text-white');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Certificate Modal Handlers
+        function openCertModal(title, code, date, imgPath) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalCode').innerText = code;
+            document.getElementById('modalDate').innerText = date;
+            document.getElementById('modalImg').src = imgPath;
+            document.getElementById('certModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCertModal() {
+            document.getElementById('certModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyCode(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'Copied!';
+                btnElement.classList.add('text-brand-emerald');
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.classList.remove('text-brand-emerald');
+                }, 2000);
+            });
+        }
+
+        // Backdrop Click Close
+        document.getElementById('certModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeCertModal();
+            }
+        });
+    </script>
+</body>
+</html>
